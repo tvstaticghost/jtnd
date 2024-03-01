@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JTnD | Story Generation</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons8-dice-64.png">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <header class="top__menu">
+        <div>
+            <a href="index.html" class="logo__name">JTnD</p></a>
+        </div>
+        <nav>
+            <ul class="nav__list">
+                <li class="nav__listitem">
+                    <a href="index.html" class="nav__link">Home</a>
+                </li>
+                <li class="nav__listitem">
+                    <a href="characters.html" class="nav__link">Characters</a>
+                </li>
+                <li class="nav__listitem">
+                    <a href="story.html" class="nav__link">Story</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="top__info">
+            <img src="assets/sun (1).svg" alt="darkmode" id="darkmode">
+            <p class="pipe">|</p>
+            <a href="#" class="nav__listitem about__link">About</a>
+            <button class="guide__btn">Official Guide</button>
+        </div>
+    </header>
+    <h1 class="story__title">Story Creation</h1>
+    <!--Remove this hr and add a fancy svg divider-->
+    <div class="divider__wrapper">
+        <img src="assets/divider.png" alt="divider" class="divider">
+    </div>
+    <div class="dungeon__container">
+        <p>Select Dungeon Size:</p>
+        <div class="story__options">
+            <button class="option__btn option__selected dungeon__btn">Small Dungeon</button>
+            <button class="option__btn dungeon__btn">Large Dungeon</button>
+        </div>
+        <button id="generateBtn">Generate</button>
+        <div id="output">
+            <div id="monsterListContainer"></div>
+            <div id="dungeonHistoryContainer"></div>
+            <div id="partyGoalContainer"></div>
+            <div id="dungeonComplicationContainer"></div>
+            <div id="dungeonSolutionContainer"></div>
+        </div>
+    </div>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+.story__title {
+    font-size: 4em;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dungeon__container {
+    text-align: center;
+    color: var(--blue);
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.dungeon__container > p {
+    font-size: 1.2em;
+    margin-bottom: 1rem;
+}
+
+.divider__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.divider {
+    width: 80%;
+    filter: invert(100%);
+}
+
+.story__options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.option__btn {
+    padding: 0.4rem 1rem;
+    font-size: 1.05em;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: var(--blue);
+    border: 2px solid var(--blue);
+    color: var(--background);
+    opacity: 0.5;
+}
+
+.option__btn:hover {
+    cursor: pointer;
+}
+
+.option__selected {
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    opacity: 1;
+}
+
+#generateBtn {
+    padding: 0.4rem 1rem;
+    font-size: 1.05em;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: var(--green);
+    border: 2px solid var(--green);
+    color: var(--background);
+    margin-top: 1rem;
+}
+
+#generateBtn:hover {
+    cursor: pointer;
+}
+
+.list__color {
+    color: var(--background);
+}
+
+#output {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 70%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer {
+    background-image: var(--test);
+    border-radius: 7px;
+    padding: 1rem;
+    color: var(--background);
+    opacity: 0;
+}
+
+#dungeonComplicationContainer {
+    grid-column: 1 / 3;
+}
+
+#dungeonSolutionContainer {
+    grid-column: 3 / 4;
+}
+
+.add__animation {
+    animation: forwards fadeIn 0.5s linear;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        translate: 0 1rem;
+    }
+
+    100% {
+        opacity: 1;
+        translate: 0 0;
+    }
+}

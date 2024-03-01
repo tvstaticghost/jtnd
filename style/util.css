@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #22252C;
+    --background-2: #42454d;
+    --light: whitesmoke;
+    --white: whitesmoke;
+
+    --red: #e14658;
+    --purple: #BB86FC;
+    --blue: #A0ADC0;
+    --green: #03DAC6;
+
+    --test: linear-gradient(180deg, var(--white), var(--white));
+
+    --regular: "Open Sans", sans-serif;
+    --fancy: "Cinzel Decorative", serif;
+    --medieval: "MedievalSharp", cursive;
+}
+
+body {
+    background-color: var(--background);
+    font-family: var(--regular);
+}
+
+h1 {
+    font-family: var(--fancy);
+    color: var(--purple);
+    font-size: 7em;
+}
+
+select {
+    width: 60px;
+    padding: 2px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.03em;
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.top__menu {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.7rem 4rem 0.7rem 4rem;
+}
+
+.top__info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pipe {
+    color: var(--light);
+    position: relative;
+    bottom: 4px;
+    font-size: 1.2em;
+}
+
+.logo__name {
+    font-family: var(--fancy);
+    font-weight: 700;
+    color: var(--light);
+    font-size: 2em;
+    text-decoration: none;
+}
+
+.about__link {
+    color: var(--light);
+    text-decoration: none;
+    padding-right: 1rem;
+    font-weight: 600;
+}
+
+.about__link:hover {
+    color: var(--green);
+}
+
+#darkmode {
+    width: 22px;
+    filter: invert(100%) sepia(27%) saturate(234%) hue-rotate(158deg) brightness(118%) contrast(92%);
+}
+
+#darkmode:hover {
+    cursor: pointer;
+}
+
+.guide__btn {
+    padding: 0.3rem 1rem;
+    font-family: var(--regular);
+    font-weight: 600;
+    background-color: var(--green);
+    border: 2px solid var(--green);
+    border-radius: 5px;
+    color: var(--background);
+}
+
+.guide__btn:hover {
+    cursor: pointer;
+    transition-duration: 0.5s;
+    translate: 0 -3px;
+}
+
+.guide__btn:not(:hover) {
+    transition-duration: 0.5s;
+    translate: 0 0;
+}
+
+/* JavaScript added styles */
+
+.sword__add {
+    width: 22px;
+    position: absolute;
+    filter: invert(82%) sepia(42%) saturate(6034%) hue-rotate(126deg) brightness(99%) contrast(98%);
+}
