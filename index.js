@@ -10,15 +10,7 @@ class CharacterCreation {
 
 //class that generates a random dnd scenerio
 class StoryCreation {
-    /*
-    constructor(dungeonSize, dungeonHistory, partyGoal, dungeonComplications, dungeonComplicationsSolutions) {
-        this.dungeonSize = dungeonSize;
-        this.dungeonHistory = dungeonHistory;
-        this.partyGoal = partyGoal;
-        this.dungeonComplications = dungeonComplications;
-        this.dungeonComplicationsSolutions = dungeonComplicationsSolutions;
-    }
-    */
+
    constructor(dungeonSize, dungeonHistory, partyGoal, dungeonComplication) {
         this.dungeonSize = dungeonSize;
         this.dungeonHistory = dungeonHistory;
@@ -227,6 +219,65 @@ class StoryCreation {
             }
         }
     }
+
+    //fix this function to return data in a more organized manner
+    selectMonsterAttacks(monsterList) {
+
+        const schoolList = ['Abjuration', 'Conjuration', 'Illusion', 'Evocation', 'Enchantment', 'Necromancy', 'Transmutation'];
+        const saveList = ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Chr'];
+
+        let numOfAttacks = [];
+        let listAttributes = [];
+
+        for (let i = 0; i < monsterList.length; i++) {
+            let numberOfAttacks = randomNumber(1, 6);
+            let numberOfRolls = 0;
+            let individualAttribute = [];
+
+            if (numberOfAttacks === 1) {
+                numberOfRolls = 1;
+            }
+            else if (numberOfAttacks >= 2 && numberOfAttacks < 6) {
+                numberOfRolls = 2;
+            }
+            else {
+                numberOfRolls = 3;
+            }
+
+            for (let j = 0; j < numberOfRolls; j++) {
+                let secondValue = randomNumber(1, 5);
+
+                if (secondValue === 1) {
+                    let schoolRoll = randomNumber(0, 6);
+                    let nextRoll = randomNumber(1, 2);
+
+                    individualAttribute.push(`Magic`);
+                    individualAttribute.push(schoolList[schoolRoll]);
+
+                    if (nextRoll === 1) {
+                        individualAttribute.push('Attack');
+                    }
+                    else {
+                        let thirdValue = randomNumber(0, 5);
+                        individualAttribute.push(`Save: ${saveList[thirdValue]}`);
+                    }
+                }
+
+                else {
+                    let nextRoll = randomNumber(0, 1);
+
+                    if (nextRoll === 0) {
+                        individualAttribute.push(`Ranged`);
+                    }
+                    else {
+                        individualAttribute.push(`Melee`);
+                    }
+                }
+            }
+            listAttributes.push(individualAttribute);
+        }
+        return listAttributes;
+    }
 }
 
 //returns a number between the min(inclusive) and the max(inclusive)
@@ -321,6 +372,7 @@ function generateMonsterList() {
     const partyGoalContainer = document.getElementById('partyGoalContainer');
     const dungeonComplicationContainer = document.getElementById('dungeonComplicationContainer');
     const dungeonSolutionContainer = document.getElementById('dungeonSolutionContainer');
+    const testContainer = document.getElementById('testContainer');
 
     generateBtn.addEventListener('click', () => {
         let selectedValue = getDungeonSelector()
@@ -333,11 +385,14 @@ function generateMonsterList() {
         let myPartyGoal = myStory.selectPartyGoal()
         let myDungeonComplication = myStory.selectionDungeonComplication()
         let myDungeonSolution = myStory.selectDungeonSolution(myDungeonComplication)
+        let myMonsterAttacks = myStory.selectMonsterAttacks(myMonsterList);
 
         clearOutput();
         monsterListContainer.innerHTML += `<h2 class="list__color">Monster List:</h2>`
         for (let i = 0; i < myMonsterList.length; i++) {
             monsterListContainer.innerHTML += `<p>${myMonsterList[i]}</p>`
+            monsterListContainer.innerHTML += `<p class="monster__subheading">Attack Type:</p>`
+            monsterListContainer.innerHTML += `<p>${myMonsterAttacks[i]}</p>`
         }
         dungeonHistoryContainer.innerHTML += `<h2 class="list__color">Dungeon History:</h2>`
         dungeonHistoryContainer.innerHTML += `<p>${myDungeonHistory}</p>`
