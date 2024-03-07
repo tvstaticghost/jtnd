@@ -22,12 +22,26 @@
 .nav__link {
     text-decoration: none;
     font-size: 1.2em;
-    color: var(--light);
-    font-weight: 500;
+    color: var(--background);
+    font-weight: 600;
 }
 
 .nav__link:hover {
-    color: var(--green);
+    text-decoration: underline;
+}
+
+.spacer {
+    aspect-ratio: 1300/300;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+}
+
+.layer1 {
+    background-image: url('../assets/wave-haikei.svg');
 }
 
 .character__attributes {
@@ -73,7 +87,7 @@
 }
 
 .heading__area {
-    margin-top: 4rem;
+    margin-top: 2rem;
     display: grid;
     justify-content: center;
     align-items: center;

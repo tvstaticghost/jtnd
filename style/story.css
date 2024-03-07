@@ -84,6 +84,16 @@
     margin-bottom: 2rem;
 }
 
+#monsterListContainer {
+    margin-top: 2rem;
+}
+
+.monster__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
 #monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer {
     background-image: var(--test);
     border-radius: 7px;

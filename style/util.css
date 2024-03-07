@@ -11,9 +11,9 @@
     --white: whitesmoke;
 
     --red: #e14658;
-    --purple: #BB86FC;
+    --purple: #FA7268;
     --blue: #A0ADC0;
-    --green: #03DAC6;
+    --green: #00CC8E;
 
     --test: linear-gradient(180deg, var(--white), var(--white));
 
@@ -29,7 +29,7 @@ body {
 
 h1 {
     font-family: var(--fancy);
-    color: var(--purple);
+    color: var(--green);
     font-size: 7em;
 }
 
@@ -50,6 +50,7 @@ select {
     justify-content: center;
     gap: 2rem;
     padding: 0.7rem 4rem 0.7rem 4rem;
+    background-color: var(--green);
 }
 
 .top__info {
@@ -59,7 +60,7 @@ select {
 }
 
 .pipe {
-    color: var(--light);
+    color: var(--background);
     position: relative;
     bottom: 4px;
     font-size: 1.2em;
@@ -68,25 +69,25 @@ select {
 .logo__name {
     font-family: var(--fancy);
     font-weight: 700;
-    color: var(--light);
+    color: var(--background);
     font-size: 2em;
     text-decoration: none;
 }
 
 .about__link {
-    color: var(--light);
+    color: var(--background);
     text-decoration: none;
     padding-right: 1rem;
     font-weight: 600;
 }
 
 .about__link:hover {
-    color: var(--green);
+    color: var(--background);
 }
 
 #darkmode {
     width: 22px;
-    filter: invert(100%) sepia(27%) saturate(234%) hue-rotate(158deg) brightness(118%) contrast(92%);
+    filter: invert(11%) sepia(11%) saturate(885%) hue-rotate(184deg) brightness(97%) contrast(92%);
 }
 
 #darkmode:hover {
@@ -97,10 +98,10 @@ select {
     padding: 0.3rem 1rem;
     font-family: var(--regular);
     font-weight: 600;
-    background-color: var(--green);
-    border: 2px solid var(--green);
+    background-color: var(--background);
+    border: 2px solid var(--background);
     border-radius: 5px;
-    color: var(--background);
+    color: var(--white);
 }
 
 .guide__btn:hover {
@@ -119,5 +120,5 @@ select {
 .sword__add {
     width: 22px;
     position: absolute;
-    filter: invert(82%) sepia(42%) saturate(6034%) hue-rotate(126deg) brightness(99%) contrast(98%);
+    filter: invert(11%) sepia(11%) saturate(885%) hue-rotate(184deg) brightness(97%) contrast(92%);
 }

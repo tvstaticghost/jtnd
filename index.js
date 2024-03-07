@@ -390,7 +390,7 @@ function generateMonsterList() {
         clearOutput();
         monsterListContainer.innerHTML += `<h2 class="list__color">Monster List:</h2>`
         for (let i = 0; i < myMonsterList.length; i++) {
-            monsterListContainer.innerHTML += `<p>${myMonsterList[i]}</p>`
+            monsterListContainer.innerHTML += `<p class="monster__name">${myMonsterList[i]}</p>`
             monsterListContainer.innerHTML += `<p class="monster__subheading">Attack Type:</p>`
             monsterListContainer.innerHTML += `<p>${myMonsterAttacks[i]}</p>`
         }
