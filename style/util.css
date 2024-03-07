@@ -122,3 +122,30 @@ select {
     position: absolute;
     filter: invert(11%) sepia(11%) saturate(885%) hue-rotate(184deg) brightness(97%) contrast(92%);
 }
+
+.mobile__menu {
+    display: none;
+}
+
+@media (min-width: 400px) {
+    
+    .top__info {
+        display: none;
+    }
+
+    .mobile__menu {
+        display: block;
+        justify-self: flex-end;
+    }
+}
+
+@media (min-width: 1300px) {
+    
+    .top__info {
+        display: flex;
+    }
+
+    .mobile__menu {
+        display: none;
+    }
+}
