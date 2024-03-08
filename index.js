@@ -225,6 +225,10 @@ class StoryCreation {
 
         const schoolList = ['Abjuration', 'Conjuration', 'Illusion', 'Evocation', 'Enchantment', 'Necromancy', 'Transmutation'];
         const saveList = ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Chr'];
+        const addedDamage = ['Save for half damage', 'No save'];
+        const conditionStatus = ['Save to avoid on hit', 'No save on hit'];
+        const damageTypes = ['Cold', 'Fire', 'Radiant', 'Necrotic', 'Acid', 'Poison', 
+                            'Lightning', 'Force', 'Thunder', 'Psychic'];
 
         let numOfAttacks = [];
         let listAttributes = [];
@@ -233,6 +237,7 @@ class StoryCreation {
             let numberOfAttacks = randomNumber(1, 6);
             let numberOfRolls = 0;
             let individualAttribute = [];
+            let elementalUsed = false;
 
             if (numberOfAttacks === 1) {
                 numberOfRolls = 1;
@@ -265,12 +270,60 @@ class StoryCreation {
 
                 else {
                     let nextRoll = randomNumber(0, 1);
+                    let thirdRoll = randomNumber(0, )
 
                     if (nextRoll === 0) {
+                        let nextDamageRoll = randomNumber(1, 8);
                         individualAttribute.push(`Ranged`);
+                        if (nextDamageRoll >= 1 && nextDamageRoll < 3) {
+                            individualAttribute.push('Slashing');
+                        }
+                        else if (nextDamageRoll >= 3 && nextDamageRoll < 5) {
+                            individualAttribute.push('Bludgeoning');
+                        }
+                        else {
+                            individualAttribute.push('Piercing');
+                        }
                     }
                     else {
+                        let nextDamageRoll = randomNumber(1, 6);
                         individualAttribute.push(`Melee`);
+                        if (nextDamageRoll >= 1 && nextDamageRoll < 3) {
+                            individualAttribute.push('Slashing');
+                        }
+                        else if (nextDamageRoll >= 3 && nextDamageRoll < 5) {
+                            individualAttribute.push('Bludgeoning');
+                        }
+                        else {
+                            individualAttribute.push('Piercing');
+                        }
+                    }
+
+                    if (monsterList[i].includes('Fire') && elementalUsed === false) {
+                        individualAttribute.push(`Damage Type: Fire`);
+                    }
+                    else if (monsterList[i].includes('Water') && elementalUsed === false) {
+                        individualAttribute.push(`Damage Type: Cold`);
+                    }
+                    else if (monsterList[i].includes('Earth') && elementalUsed === false) {
+                        individualAttribute.push(`Damage Type: Force`);
+                    }
+                    else if (monsterList[i].includes('Air') && elementalUsed === false) {
+                        individualAttribute.push(`Damage Type: Lightning`);
+                    }
+
+                    else {
+                        let extraDamage = randomNumber(0, 5);
+
+                        if (extraDamage === 5) {
+                            let addedDamangeRoll = randomNumber(0, addedDamage.length - 1);
+                            let conditionStatusRoll = randomNumber(0, conditionStatus.length - 1);
+                            let damageTypeRoll = randomNumber(0, damageTypes.length - 1);
+
+                            individualAttribute.push('Added damage: ' + addedDamage[addedDamangeRoll]);
+                            individualAttribute.push('Condition status: ' + conditionStatus[conditionStatusRoll]);
+                            individualAttribute.push('Damage Type: ' + damageTypes[damageTypeRoll]);
+                        }
                     }
                 }
             }
@@ -388,11 +441,22 @@ function generateMonsterList() {
         let myMonsterAttacks = myStory.selectMonsterAttacks(myMonsterList);
 
         clearOutput();
-        monsterListContainer.innerHTML += `<h2 class="list__color">Monster List:</h2>`
+        monsterListContainer.innerHTML += `<h2 class="list__color monster__title">Monster List:</h2>`
         for (let i = 0; i < myMonsterList.length; i++) {
-            monsterListContainer.innerHTML += `<p class="monster__name">${myMonsterList[i]}</p>`
-            monsterListContainer.innerHTML += `<p class="monster__subheading">Attack Type:</p>`
-            monsterListContainer.innerHTML += `<p>${myMonsterAttacks[i]}</p>`
+            if ((i === 2 || i === 4) && i === myMonsterList.length - 1) {
+                monsterListContainer.innerHTML += `<div class="monster__wrapper odd__element"> 
+                                                   <p class="monster__name">${myMonsterList[i]}</p>
+                                                   <p class="monster__subheading">Attack Type:</p>
+                                                   <p>${myMonsterAttacks[i]}</p>
+                                                   </div>`
+            }
+            else {
+                monsterListContainer.innerHTML += `<div class="monster__wrapper"> 
+                                                   <p class="monster__name">${myMonsterList[i]}</p>
+                                                   <p class="monster__subheading">Attack Type:</p>
+                                                   <p>${myMonsterAttacks[i]}</p>
+                                                   </div>`
+            }
         }
         dungeonHistoryContainer.innerHTML += `<h2 class="list__color">Dungeon History:</h2>`
         dungeonHistoryContainer.innerHTML += `<p>${myDungeonHistory}</p>`

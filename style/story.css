@@ -71,6 +71,7 @@
 
 .list__color {
     color: var(--background);
+    margin-bottom: 0.4rem;
 }
 
 #output {
@@ -78,7 +79,7 @@
     grid-template-columns: 30% 30% 30%;
     justify-content: center;
     gap: 2rem;
-    max-width: 70%;
+    max-width: 73%;
     margin: 0 auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -86,12 +87,32 @@
 
 #monsterListContainer {
     margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 70%;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 .monster__name {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
     text-decoration: underline;
+}
+
+.monster__title {
+    grid-column: 1 / 3;
+}
+
+.odd__element {
+    grid-column: 1 / 3;
+}
+
+.monster__wrapper {
+    word-wrap: break-word;
+    grid-row: auto;
 }
 
 #monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer {
