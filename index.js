@@ -255,61 +255,62 @@ class StoryCreation {
                 if (secondValue === 1) {
                     let schoolRoll = randomNumber(0, 6);
                     let nextRoll = randomNumber(1, 2);
+                    let myAttackStyle = '';
 
-                    individualAttribute.push(`Magic`);
-                    individualAttribute.push(schoolList[schoolRoll]);
+                    myAttackStyle += `Attack Type ${j + 1}: Magic - `;
+                    myAttackStyle += `School: ${schoolList[schoolRoll]} - `;
 
                     if (nextRoll === 1) {
-                        individualAttribute.push('Attack');
+                        myAttackStyle += `Attack <br>`;
                     }
                     else {
                         let thirdValue = randomNumber(0, 5);
-                        individualAttribute.push(`Save: ${saveList[thirdValue]}`);
+                        myAttackStyle += `Save: ${saveList[thirdValue]} <br>`;
                     }
+                    individualAttribute.push(myAttackStyle);
                 }
 
                 else {
                     let nextRoll = randomNumber(0, 1);
-                    let thirdRoll = randomNumber(0, )
+                    let myAttackStyle = '';
 
                     if (nextRoll === 0) {
                         let nextDamageRoll = randomNumber(1, 8);
-                        individualAttribute.push(`Ranged`);
+                        myAttackStyle += `Attack Type ${j + 1}: Ranged `;
                         if (nextDamageRoll >= 1 && nextDamageRoll < 3) {
-                            individualAttribute.push('Slashing');
+                            myAttackStyle += `(Slashing) <br>`;
                         }
                         else if (nextDamageRoll >= 3 && nextDamageRoll < 5) {
-                            individualAttribute.push('Bludgeoning');
+                            myAttackStyle += `(Bludgeoning) <br>`;
                         }
                         else {
-                            individualAttribute.push('Piercing');
+                            myAttackStyle += `(Piercing) <br>`;
                         }
                     }
                     else {
                         let nextDamageRoll = randomNumber(1, 6);
-                        individualAttribute.push(`Melee`);
+                        myAttackStyle += `Attack Type ${j + 1}: Melee `;
+                                            
                         if (nextDamageRoll >= 1 && nextDamageRoll < 3) {
-                            individualAttribute.push('Slashing');
-                        }
-                        else if (nextDamageRoll >= 3 && nextDamageRoll < 5) {
-                            individualAttribute.push('Bludgeoning');
-                        }
-                        else {
-                            individualAttribute.push('Piercing');
+                            myAttackStyle += `(Slashing) <br>`;
+                        } else if (nextDamageRoll >= 3 && nextDamageRoll < 5) {
+                            myAttackStyle += `(Bludgeoning) <br>`;
+                        } else {
+                            myAttackStyle += `(Piercing) <br>`;
                         }
                     }
 
                     if (monsterList[i].includes('Fire') && elementalUsed === false) {
-                        individualAttribute.push(`Damage Type: Fire`);
+                        myAttackStyle += `Damage Type: Fire <br>`;
                     }
                     else if (monsterList[i].includes('Water') && elementalUsed === false) {
-                        individualAttribute.push(`Damage Type: Cold`);
+                        myAttackStyle += `Damage Type: Cold <br>`;
                     }
                     else if (monsterList[i].includes('Earth') && elementalUsed === false) {
-                        individualAttribute.push(`Damage Type: Force`);
+                        myAttackStyle += `Damage Type: Force <br>`;
                     }
                     else if (monsterList[i].includes('Air') && elementalUsed === false) {
-                        individualAttribute.push(`Damage Type: Lightning`);
+                        myAttackStyle += `Damage Type: Lightning <br>`;
                     }
 
                     else {
@@ -320,11 +321,12 @@ class StoryCreation {
                             let conditionStatusRoll = randomNumber(0, conditionStatus.length - 1);
                             let damageTypeRoll = randomNumber(0, damageTypes.length - 1);
 
-                            individualAttribute.push('Added damage: ' + addedDamage[addedDamangeRoll]);
-                            individualAttribute.push('Condition status: ' + conditionStatus[conditionStatusRoll]);
-                            individualAttribute.push('Damage Type: ' + damageTypes[damageTypeRoll]);
+                            myAttackStyle += `Added damage: ${addedDamage[addedDamangeRoll]} <br>`;
+                            myAttackStyle += `Condition status: ${conditionStatus[conditionStatusRoll]} <br>`;
+                            myAttackStyle += `Damage Type: ${damageTypes[damageTypeRoll]} <br>`;
                         }
                     }
+                    individualAttribute.push(myAttackStyle);
                 }
             }
             listAttributes.push(individualAttribute);
@@ -446,14 +448,12 @@ function generateMonsterList() {
             if ((i === 2 || i === 4) && i === myMonsterList.length - 1) {
                 monsterListContainer.innerHTML += `<div class="monster__wrapper odd__element"> 
                                                    <p class="monster__name">${myMonsterList[i]}</p>
-                                                   <p class="monster__subheading">Attack Type:</p>
                                                    <p>${myMonsterAttacks[i]}</p>
                                                    </div>`
             }
             else {
                 monsterListContainer.innerHTML += `<div class="monster__wrapper"> 
                                                    <p class="monster__name">${myMonsterList[i]}</p>
-                                                   <p class="monster__subheading">Attack Type:</p>
                                                    <p>${myMonsterAttacks[i]}</p>
                                                    </div>`
             }
