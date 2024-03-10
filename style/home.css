@@ -78,7 +78,7 @@
 
 .hover__desc {
     opacity: 1;
-    animation: 0.2s riseUp linear;
+    animation: 0.3s riseUp linear;
 }
 
 .frame__wrapper {
@@ -141,6 +141,10 @@
 
 .frame__image__hover {
     opacity: 0.2;
+}
+
+.desc__link {
+    color: var(--light);
 }
 
 @keyframes riseUp {
@@ -274,10 +278,6 @@
     .desc {
         bottom: 13.9rem;
         font-size: 1.1em;
-    }
-
-    .desc__link {
-        color: var(--light);
     }
     
     .frame__wrapper {
