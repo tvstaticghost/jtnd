@@ -67,13 +67,17 @@
 
 .frame {
     width: 20rem;
-    filter: invert(72%) sepia(17%) saturate(269%) hue-rotate(356deg) brightness(98%) contrast(92%);
 }
 
 .desc {
     position: absolute;
     opacity: 0;
     font-family: var(--fancy);
+    color: black;
+    font-weight: 800;
+    text-decoration: underline;
+    bottom: 45%;
+    font-size: 1.1em;
 }
 
 .hover__desc {
@@ -118,25 +122,32 @@
 
 .dragon__image {
     width: 30rem;
-    filter: invert(80%);
+    filter: invert(93%) sepia(6%) saturate(1474%) hue-rotate(3deg) brightness(91%) contrast(87%);
     justify-self: center;
 }
 
 .frame__image {
     position: absolute;
-    width: 16rem;
-    bottom: 4rem;
-    right: 3rem;
+    width: 60%;
+    bottom: 3rem;
+    right: 6rem;
 }
 
 .male__character {
-    width: 17rem;
-    bottom: 3rem;
-    right: 2rem;
+    right: 5rem;
+    bottom: 2rem;
 }
 
 .mushroom__character {
-    right: 2rem;
+    right: 4rem;
+}
+
+.frame__paper {
+    position: absolute;
+    z-index: -2;
+    width: 22rem;
+    height: 22rem;
+    bottom: 1rem;
 }
 
 .frame__image__hover {
@@ -182,10 +193,6 @@
         width: 20rem;
     }
     
-    .desc {
-        bottom: 13rem;
-    }
-    
     .frame__wrapper {
         flex-direction: column;
     }
@@ -201,6 +208,69 @@
     .dragon__image {
         display: none;
     }
+
+    .frame__image {
+        position: absolute;
+        width: 11rem;
+        bottom: 12%;
+        right: 30svw;
+    }
+    
+    .male__character {
+        right: 30svw;
+        bottom: 12%;
+    }
+    
+    .mushroom__character {
+        bottom: 12%;
+    }
+    
+    .frame__paper {
+        width: 18rem;
+        height: 18rem;
+        bottom: 1rem;
+    }
+
+    .desc {
+        font-size: 0.9em;
+        bottom: 42%;
+    }
+}
+
+@media (min-width: 500px) {
+    .frame__image {
+        width: 11rem;
+        bottom: 12%;
+        right: 33vw;
+    }
+    
+    .male__character {
+        right: 32svw;
+        bottom: 12%;
+    }
+    
+    .mushroom__character {
+        bottom: 12%;
+        right: 32vw;
+    }
+}
+
+@media (min-width: 600px) {
+    .frame__image {
+        width: 11rem;
+        bottom: 12%;
+        right: 38vw;
+    }
+    
+    .male__character {
+        right: 37svw;
+        bottom: 12%;
+    }
+    
+    .mushroom__character {
+        bottom: 12%;
+        right: 37vw;
+    }
 }
 
 @media (min-width: 700px) {
@@ -215,20 +285,9 @@
         gap: 2rem;
     }
 
-    .frame__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        opacity: 0.7;
-    }
-
     .frame {
         margin-top: 4rem;
         width: 21rem;
-    }
-
-    .desc {
-        bottom: 13.9rem;
     }
     
     .frame__wrapper {
@@ -239,7 +298,63 @@
     .main__title > h1 {
         font-size: 8.5em;
     }
+
+    .frame__image {
+        right: 10svw;
+    }
     
+    .male__character {
+        right: 10svw;
+    }
+    
+    .mushroom__character {
+        right: 10svw;
+    }
+    
+}
+
+@media (min-width: 850px) {
+    
+    .mushroom__character {
+        bottom: 12%;
+        right: 8svw;
+    }
+}
+
+@media (min-width: 1000px) {
+    .frame__image {
+        right: 8svw;
+    }
+    
+    .male__character {
+        right: 8svw;
+    }
+    
+    .mushroom__character {
+        right: 7svw;
+    }
+
+    .desc {
+        bottom: 40%;
+    }
+}
+
+@media (min-width: 1250px) {
+    .frame__image {
+        right: 7svw;
+    }
+    
+    .male__character {
+        right: 6svw;
+    }
+    
+    .mushroom__character {
+        right: 5svw;
+    }
+
+    .desc {
+        bottom: 42%;
+    }
 }
 
 @media (min-width: 1300px) {
@@ -263,21 +378,9 @@
         grid-template-columns: 35% 35%;
     }
 
-    .frame__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        opacity: 0.7;
-    }
-
     .frame {
         margin-top: 2.5rem;
         width: 21rem;
-    }
-
-    .desc {
-        bottom: 13.9rem;
-        font-size: 1.1em;
     }
     
     .frame__wrapper {
@@ -295,6 +398,22 @@
         width: 35rem;
         justify-self: left;
     }
+
+    
+}
+
+@media (min-width: 1450px) {
+    .frame__image {
+        right: 5.5svw;
+    }
+    
+    .male__character {
+        right: 5svw;
+    }
+    
+    .mushroom__character {
+        right: 5svw;
+    }
 }
 
 @media (min-width: 1650px) {
@@ -307,8 +426,47 @@
         width: 25rem;
     }
 
+    .frame__paper {
+        width: 22rem;
+        height: 22rem;
+    }
+
+    .frame__image {
+        width: 57%;
+        right: 5.5svw;
+        bottom: 13%;
+    }
+    
+    .male__character {
+        right: 5svw;
+        bottom: 10%;
+    }
+    
+    .mushroom__character {
+        right: 5svw;
+        bottom: 11%;
+    }
+
     .desc {
-        bottom: 16.5rem;
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1850px) {
+    .frame__image {
+        right: 4.5svw;
+    }
+    
+    .male__character {
+        right: 4.6svw;
+    }
+    
+    .mushroom__character {
+        right: 4svw;
+    }
+
+    .desc {
+        font-size: 1.1em;
     }
 }
 
@@ -316,11 +474,6 @@
 
     .frame {
         width: 31rem;
-    }
-
-    .desc {
-        bottom: 20.5rem;
-        font-size: 1.3em;
     }
 
     .main__title {
@@ -334,5 +487,41 @@
 
     .dragon__image {
         width: 40rem;
+    }
+
+    .frame__paper {
+        width: 28rem;
+        height: 28rem;
+    }
+
+    .frame__image {
+        right: 6svw;
+    }
+    
+    .male__character {
+        right: 5svw;
+    }
+    
+    .mushroom__character {
+        right: 4.5svw;
+    }
+}
+
+@media (min-width: 2250px) {
+    .frame__image {
+        right: 4.5svw;
+    }
+    
+    .male__character {
+        right: 4svw;
+    }
+    
+    .mushroom__character {
+        right: 4svw;
+    }
+
+    .desc {
+        font-size: 1.2em;
+        bottom: 43%;
     }
 }
