@@ -49,7 +49,7 @@ select {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 0.7rem 4rem 0.7rem 4rem;
+    padding: 0.7rem 7rem 0.7rem 7rem;
     background-color: var(--green);
 }
 
@@ -95,7 +95,7 @@ select {
 }
 
 .guide__btn {
-    padding: 0.3rem 1rem;
+    padding: 0.6rem 1rem;
     font-family: var(--regular);
     font-weight: 600;
     background-color: var(--background);
@@ -135,17 +135,77 @@ select {
 
     .mobile__menu {
         display: block;
-        justify-self: flex-end;
+        justify-self: center;
     }
 }
 
-@media (min-width: 1300px) {
-    
-    .top__info {
-        display: flex;
+@media (min-width: 700px) {
+
+    .guide__btn {
+        padding: 0.3rem 1rem;
+    }
+}
+
+@media (min-width: 1000px){
+
+    .guide__btn {
+        padding: 0.6rem 1rem;
     }
 
     .mobile__menu {
         display: none;
+    }
+
+    .top__info {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .logo__name {
+        font-size: 2.2em;
+    }
+}
+
+@media (min-width: 1300px) {
+
+    .mobile__menu {
+        display: none;
+    }
+
+    .top__menu {
+        font-size: 1.1em;
+    }
+
+    .sword__add {
+        width: 25px;
+    }
+
+    .logo__name {
+        font-size: 2.5em;
+    }
+}
+
+@media (min-width: 1700px) {
+    .top__menu {
+        font-size: 1.1em;
+    }
+
+    #darkmode {
+        width: 25px;
+    }
+
+    .top__info {
+        font-size: 1.05em;
+    }
+
+    .guide__btn {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 2000px) {
+
+    .guide__btn {
+        font-size: 1.05rem;
     }
 }

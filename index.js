@@ -344,25 +344,28 @@ function randomNumber(min, max) {
 
 function addFrameHover() {
     const frames = document.getElementsByClassName('frame__container');
+    const desc = document.getElementsByClassName('desc');
 
     for (let i = 0; i < frames.length; i++) {
         frames[i].addEventListener('mouseover', () => {
-            scaleUp(frames[i])
+            scaleUp(frames[i], desc[i]);
         })
 
         frames[i].addEventListener('mouseout', () => {
-            scaleDown(frames[i])
+            scaleDown(frames[i], desc[i]);
         })
     }
 }
 
 
-function scaleUp(unit) {
+function scaleUp(unit, text) {
     unit.classList.add('frame__hover');
+    text.classList.add('hover__desc');
 }
 
-function scaleDown(unit) {
+function scaleDown(unit, text) {
     unit.classList.remove('frame__hover');
+    text.classList.remove('hover__desc');
 }
 
 

@@ -13,8 +13,9 @@
 }
 
 .dungeon__container > p {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-bottom: 1rem;
+    color: var(--light);
 }
 
 .divider__wrapper {
@@ -42,6 +43,7 @@
     border: 2px solid var(--blue);
     color: var(--background);
     opacity: 0.5;
+    font-weight: 550;
 }
 
 .option__btn:hover {
@@ -49,8 +51,9 @@
 }
 
 .option__selected {
-    background-color: var(--purple);
-    border: 2px solid var(--purple);
+    background-color: var(--light);
+    border: 2px solid var(--light);
+    color: var(--background);
     opacity: 1;
 }
 
@@ -88,9 +91,9 @@
 #monsterListContainer {
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: 40% 40%;
+    grid-template-columns: 45% 45%;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     max-width: 70%;
     margin: 0 auto;
     margin-top: 2rem;
