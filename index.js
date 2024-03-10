@@ -345,27 +345,30 @@ function randomNumber(min, max) {
 function addFrameHover() {
     const frames = document.getElementsByClassName('frame__container');
     const desc = document.getElementsByClassName('desc');
+    const image = document.getElementsByClassName('frame__image');
 
     for (let i = 0; i < frames.length; i++) {
         frames[i].addEventListener('mouseover', () => {
-            scaleUp(frames[i], desc[i]);
+            scaleUp(frames[i], desc[i], image[i]);
         })
 
         frames[i].addEventListener('mouseout', () => {
-            scaleDown(frames[i], desc[i]);
+            scaleDown(frames[i], desc[i], image[i]);
         })
     }
 }
 
 
-function scaleUp(unit, text) {
+function scaleUp(unit, text, image) {
     unit.classList.add('frame__hover');
     text.classList.add('hover__desc');
+    image.classList.add('frame__image__hover');
 }
 
-function scaleDown(unit, text) {
+function scaleDown(unit, text, image) {
     unit.classList.remove('frame__hover');
     text.classList.remove('hover__desc');
+    image.classList.remove('frame__image__hover');
 }
 
 
