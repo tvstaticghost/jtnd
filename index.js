@@ -233,6 +233,7 @@ class StoryCreation {
         let numOfAttacks = [];
         let listAttributes = [];
 
+        let hasMagic = false
         for (let i = 0; i < monsterList.length; i++) {
             let numberOfAttacks = randomNumber(1, 6);
             let numberOfRolls = 0;
@@ -253,19 +254,20 @@ class StoryCreation {
                 let secondValue = randomNumber(1, 5);
 
                 if (secondValue === 1) {
+                    hasMagic = true
                     let schoolRoll = randomNumber(0, 6);
                     let nextRoll = randomNumber(1, 2);
                     let myAttackStyle = '';
 
                     myAttackStyle += `Attack Type ${j + 1}: Magic - `;
-                    myAttackStyle += `School: ${schoolList[schoolRoll]} - `;
+                    myAttackStyle += `School: ${schoolList[schoolRoll]} `;
 
                     if (nextRoll === 1) {
-                        myAttackStyle += `Attack <br>`;
+                        myAttackStyle += `(Attack) <br>`;
                     }
                     else {
                         let thirdValue = randomNumber(0, 5);
-                        myAttackStyle += `Save: ${saveList[thirdValue]} <br>`;
+                        myAttackStyle += `(Save: ${saveList[thirdValue]}) <br>`;
                     }
                     individualAttribute.push(myAttackStyle);
                 }
@@ -331,6 +333,43 @@ class StoryCreation {
             }
             listAttributes.push(individualAttribute);
         }
+        /*
+        let containsMagic = false
+        for (let i = 0; i < listAttributes.length; i++) {
+            console.log(listAttributes[i])
+            if (listAttributes[i].includes('Magic')) {
+                const randomMonster = randomNumber(0, monsterList.length - 1);
+                containsMagic = true
+            }
+        }
+
+        if (!containsMagic) {
+            console.log('No Magic')
+        }
+        */
+        if (!hasMagic) {
+            console.log('No Magic!')
+            let listItemToChange = randomNumber(0, listAttributes.length - 1);
+
+            let selectedList = listAttributes[listItemToChange]
+
+            let nextValue = randomNumber(0, selectedList.length - 1);
+
+            let schoolRoll = randomNumber(0, 6);
+            let nextRoll = randomNumber(1, 2);
+            let lastString = '';
+
+            if (nextRoll === 1) {
+                lastString += `(Attack) <br>`;
+            }
+            else {
+                let thirdValue = randomNumber(0, 5);
+                lastString += `(Save: ${saveList[thirdValue]}) <br>`;
+            }
+
+            selectedList[nextValue] = `Attack Type ${selectedList[nextValue][12]}: Magic - School: ${schoolList[schoolRoll]} ${lastString}`;
+        }
+        console.log(listAttributes)
         return listAttributes;
     }
 }
