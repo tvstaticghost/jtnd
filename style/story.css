@@ -28,13 +28,13 @@
     filter: invert(100%);
 }
 
-.story__options {
+.story__options, .resistance__options {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
 
-.option__btn {
+.option__btn, .resistance__btn {
     padding: 0.4rem 1rem;
     font-size: 1.05em;
     font-weight: 500;
@@ -50,11 +50,15 @@
     cursor: pointer;
 }
 
-.option__selected {
+.option__selected, .resistance__selected {
     background-color: var(--light);
     border: 2px solid var(--light);
     color: var(--background);
     opacity: 1;
+}
+
+.unique__heading {
+    margin-top: 2rem;
 }
 
 #generateBtn {
@@ -88,7 +92,7 @@
     margin-bottom: 2rem;
 }
 
-#monsterListContainer {
+#monsterListContainer, #monsterTypesContainer {
     margin-top: 2rem;
     display: grid;
     grid-template-columns: 45% 45%;
@@ -118,7 +122,7 @@
     grid-row: auto;
 }
 
-#monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer {
+#monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer, #monsterTypesContainer {
     background-image: var(--test);
     border-radius: 7px;
     padding: 1rem;

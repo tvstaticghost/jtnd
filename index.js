@@ -333,20 +333,7 @@ class StoryCreation {
             }
             listAttributes.push(individualAttribute);
         }
-        /*
-        let containsMagic = false
-        for (let i = 0; i < listAttributes.length; i++) {
-            console.log(listAttributes[i])
-            if (listAttributes[i].includes('Magic')) {
-                const randomMonster = randomNumber(0, monsterList.length - 1);
-                containsMagic = true
-            }
-        }
 
-        if (!containsMagic) {
-            console.log('No Magic')
-        }
-        */
         if (!hasMagic) {
             console.log('No Magic!')
             let listItemToChange = randomNumber(0, listAttributes.length - 1);
@@ -371,6 +358,133 @@ class StoryCreation {
         }
         console.log(listAttributes)
         return listAttributes;
+    }
+
+    monsterResistances(monsterList, unique) {
+        let resistanceList = []
+
+        for (let i = 0; i < monsterList.length; i++) {
+            let resistanceRolls = 0
+            let resistanceSubList = []
+
+            if (unique === 'unique') {
+                resistanceRolls = randomNumber(1, 6);
+            }
+            else {
+                resistanceRolls = randomNumber(1, 8);
+            }
+
+            let amountOfRolls = 0;
+
+            if (resistanceRolls === 1) {
+                amountOfRolls = 0;
+            }
+            else if (resistanceRolls === 2) {
+                amountOfRolls = 1;
+            }
+            else if (resistanceRolls >= 3 && resistanceRolls < 6) {
+                amountOfRolls = 2;
+            }
+            else if (resistanceRolls === 6) {
+                amountOfRolls = 3;
+            }
+            else if (resistanceRolls === 7) {
+                amountOfRolls = 4;
+            }
+            else {
+                amountOfRolls = 5;
+            }
+            
+            if (monsterList[i].includes('Fire')) {
+                resistanceSubList.push('Fire');
+                amountOfRolls--;
+            }
+            else if (monsterList[i].includes('Water')) {
+                resistanceSubList.push('Cold');
+                amountOfRolls--;
+            }
+            else if (monsterList[i].includes('Earth')) {
+                resistanceSubList.push('Force');
+                amountOfRolls--;
+            }
+            else if (monsterList[i].includes('Air')) {
+                resistanceSubList.push('Lightning');
+                amountOfRolls--;
+            }
+
+            while (resistanceSubList.length < amountOfRolls) {
+                let resistanceRoll = buildResistanceList()
+                if (!resistanceSubList.includes(resistanceRoll)) {
+                    resistanceSubList.push(resistanceRoll);
+                }
+            }
+
+            if (resistanceSubList.length === 0) {
+                resistanceList.push('None');
+            }
+            else {
+                resistanceList.push(resistanceSubList)
+            }
+        }
+        return resistanceList;
+    }
+        
+}
+
+function buildResistanceList() {
+    const diceRoll = randomNumber(1, 100);
+
+    if (diceRoll >= 1 && diceRoll < 13) {
+        return 'Piercing'
+    }
+    else if (diceRoll >= 13 && diceRoll < 25) {
+        return 'Slashing'
+    }
+    else if (diceRoll >= 25 && diceRoll < 36) {
+        return 'Bludgeoning'
+    }
+    else if (diceRoll >= 36 && diceRoll < 41) {
+        return 'Cold'
+    }
+    else if (diceRoll >= 41 && diceRoll < 46) {
+        return 'Radiant'
+    }
+    else if (diceRoll >= 46 && diceRoll < 51) {
+        return 'Acid'
+    }
+    else if (diceRoll >= 51 && diceRoll < 56) {
+        return 'Poison'
+    }
+    else if (diceRoll >= 56 && diceRoll < 61) {
+        return 'Lightning'
+    }
+    else if (diceRoll >= 61 && diceRoll < 66) {
+        return 'Force'
+    }
+    else if (diceRoll >= 66 && diceRoll < 71) {
+        return 'Thunder'
+    }
+    else if (diceRoll >= 71 && diceRoll < 76) {
+        return 'Physic'
+    }
+    else if (diceRoll >= 76 && diceRoll < 86) {
+        return 'Fire'
+    }
+    else if (diceRoll >= 86 && diceRoll < 91) {
+        return 'Necrotic'
+    }
+    else if (diceRoll >= 91 && diceRoll < 96) {
+        return 'Magical'
+    }
+    else {
+        return 'All Physical'
+    }
+}
+
+class RoomLayout {
+
+    constructor(roomRoll) {
+        this.roomRoll = roomRoll;
     }
 }
 
@@ -443,6 +557,7 @@ function darkMode() {
 
 function createStoryFromClass(){
     const dungeonBtns = document.getElementsByClassName('dungeon__btn');
+    const resistanceBtns = document.getElementsByClassName('resistance__btn');
 
     for (let i = 0; i < dungeonBtns.length; i++) {
         dungeonBtns[i].addEventListener('click', () => {
@@ -463,6 +578,26 @@ function createStoryFromClass(){
             }
         });
     }
+
+    for (let i = 0; i < resistanceBtns.length; i++) {
+        resistanceBtns[i].addEventListener('click', () => {
+            if (resistanceBtns[i].classList.contains('resistance__selected')) {
+                for (let j = 0; j < resistanceBtns.length; j++) {
+                    if (resistanceBtns[j] != resistanceBtns[i] && resistanceBtns[j].classList.contains('option__selected')) {
+                        resistanceBtns[i].classList.remove('resistance__selected');
+                    }
+                }
+            }
+            else {
+                resistanceBtns[i].classList.add('resistance__selected');
+                for (let j = 0; j < resistanceBtns.length; j++) {
+                    if (resistanceBtns[j] != resistanceBtns[i]) {
+                        resistanceBtns[j].classList.remove('resistance__selected');
+                    }
+                }
+            }
+        });
+    }
 }
 
 function generateMonsterList() {
@@ -473,9 +608,11 @@ function generateMonsterList() {
     const dungeonComplicationContainer = document.getElementById('dungeonComplicationContainer');
     const dungeonSolutionContainer = document.getElementById('dungeonSolutionContainer');
     const testContainer = document.getElementById('testContainer');
+    const monsterTypeContainer = document.getElementById('monsterTypesContainer');
 
     generateBtn.addEventListener('click', () => {
         let selectedValue = getDungeonSelector()
+        let resistanceValue = getUniqueSelector()
         let dungeonHistory = renderDungeonHistory()
         let thePartyGoal = randomNumber(1, 6);
         let theDungeonComplication = randomNumber(0, 3);
@@ -486,6 +623,7 @@ function generateMonsterList() {
         let myDungeonComplication = myStory.selectionDungeonComplication()
         let myDungeonSolution = myStory.selectDungeonSolution(myDungeonComplication)
         let myMonsterAttacks = myStory.selectMonsterAttacks(myMonsterList);
+        let myMonsterTypes = myStory.monsterResistances(myMonsterList, resistanceValue);
 
         clearOutput();
         monsterListContainer.innerHTML += `<h2 class="list__color monster__title">Monster List:</h2>`
@@ -503,6 +641,23 @@ function generateMonsterList() {
                                                    </div>`
             }
         }
+
+        monsterTypeContainer.innerHTML += `<h2 class="list__color monster__title">Monster Resistances:</h2>`
+        for (let i = 0; i < myMonsterTypes.length; i++) {
+            if ((i === 2 || i === 4) && i === myMonsterTypes.length - 1) {
+                monsterTypeContainer.innerHTML += `<div class="monster__wrapper odd__element"> 
+                                                    <p class="monster__name">${myMonsterList[i]}</p>
+                                                    <p>${myMonsterTypes[i]}</p>
+                                                    </div>`
+            }
+            else {
+                monsterTypeContainer.innerHTML += `<div class="monster__wrapper"> 
+                                                   <p class="monster__name">${myMonsterList[i]}</p>
+                                                   <p>${myMonsterTypes[i]}</p>
+                                                   </div>`
+            }
+        }
+
         dungeonHistoryContainer.innerHTML += `<h2 class="list__color">Dungeon History:</h2>`
         dungeonHistoryContainer.innerHTML += `<p>${myDungeonHistory}</p>`
 
@@ -520,6 +675,7 @@ function generateMonsterList() {
         addAnimation(partyGoalContainer);
         addAnimation(dungeonComplicationContainer);
         addAnimation(dungeonSolutionContainer);
+        addAnimation(monsterTypeContainer);
     })
 }
 
@@ -535,10 +691,23 @@ function getDungeonSelector() {
     return selectedValue[0]
 }
 
+function getUniqueSelector() {
+    const resistanceBtns = document.getElementsByClassName('resistance__btns');
+
+    let selectedValue = ''
+    for (let i = 0; i < resistanceBtns.length; i++) {
+        if (resistanceBtns[i].classList.contains('resistance__selected')) {
+            selectedValue = resistanceBtns[i].textContent.toLowerCase().split(' ')
+        }
+    }
+    return selectedValue[0]
+}
+
 function clearOutput() {
     const containerList = [document.getElementById('monsterListContainer'), 
     document.getElementById('dungeonHistoryContainer'), document.getElementById('partyGoalContainer'), 
-    document.getElementById('dungeonComplicationContainer'), document.getElementById('dungeonSolutionContainer')];
+    document.getElementById('dungeonComplicationContainer'), document.getElementById('dungeonSolutionContainer'), 
+    document.getElementById('monsterTypesContainer')];
     
     for (let i = 0; i < containerList.length; i++) {
         containerList[i].textContent = '';
