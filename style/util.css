@@ -15,6 +15,9 @@
     --blue: #A0ADC0;
     --green: #07a072;
 
+    --other1: #8B89D8;
+    --other2: #CA6360;
+
     --test: linear-gradient(180deg, var(--white), var(--white));
 
     --regular: "Open Sans", sans-serif;

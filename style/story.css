@@ -28,13 +28,13 @@
     filter: invert(100%);
 }
 
-.story__options, .resistance__options {
+.story__options, .resistance__options, .vulnerability__options {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
 
-.option__btn, .resistance__btn {
+.option__btn, .resistance__btn, .vulnerability__btn {
     padding: 0.4rem 1rem;
     font-size: 1.05em;
     font-weight: 500;
@@ -46,11 +46,11 @@
     font-weight: 550;
 }
 
-.option__btn:hover {
+.option__btn:hover, .resistance__btn:hover, .vulnerability__btn:hover {
     cursor: pointer;
 }
 
-.option__selected, .resistance__selected {
+.option__selected, .resistance__selected, .vulnerability__selected {
     background-color: var(--light);
     border: 2px solid var(--light);
     color: var(--background);
@@ -62,7 +62,7 @@
 }
 
 #generateBtn {
-    padding: 0.4rem 1rem;
+    padding: 0.6rem 1rem;
     font-size: 1.05em;
     font-weight: 500;
     border-radius: 5px;
@@ -92,7 +92,7 @@
     margin-bottom: 2rem;
 }
 
-#monsterListContainer, #monsterTypesContainer {
+#monsterListContainer, #monsterTypesContainer, #monsterVulnerabilityContainer {
     margin-top: 2rem;
     display: grid;
     grid-template-columns: 45% 45%;
@@ -122,20 +122,26 @@
     grid-row: auto;
 }
 
-#monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer, #monsterTypesContainer {
-    background-image: var(--test);
+#monsterListContainer, #dungeonHistoryContainer, #partyGoalContainer, #dungeonComplicationContainer, #dungeonSolutionContainer, #monsterTypesContainer, #monsterVulnerabilityContainer {
     border-radius: 7px;
     padding: 1rem;
     color: var(--background);
     opacity: 0;
+    background-color: var(--light);
+}
+
+#partyGoalContainer {
+    grid-column: 2 / 4;
 }
 
 #dungeonComplicationContainer {
     grid-column: 1 / 3;
+    background-color: var(--white);
 }
 
 #dungeonSolutionContainer {
     grid-column: 3 / 4;
+    background-color: var(--white);
 }
 
 .add__animation {

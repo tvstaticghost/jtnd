@@ -428,6 +428,71 @@ class StoryCreation {
         }
         return resistanceList;
     }
+
+    monsterVulnerabilities(monsterList, weak, monsterTypes) {
+        let vulnerabilityList = []
+        console.log(monsterTypes)
+
+        for (let i = 0; i < monsterList.length; i++) {
+            let vulnerabilityRolls = 0
+            let vulnerabilitySubList = []
+            let currentResistanceList = monsterTypes[i];
+
+            if (weak === 'weak') {
+                vulnerabilityRolls = randomNumber(1, 6);
+            }
+            else {
+                vulnerabilityRolls = randomNumber(1, 8);
+            }
+
+            let amountOfRolls = 0;
+
+            if (vulnerabilityRolls === 1) {
+                amountOfRolls = 0;
+            }
+            else if (vulnerabilityRolls === 2) {
+                amountOfRolls = 1;
+            }
+            else if (vulnerabilityRolls >= 3 && vulnerabilityRolls < 7) {
+                amountOfRolls = 2;
+            }
+            else {
+                amountOfRolls = 3;
+            }
+
+            if (monsterList[i].includes('Fire')) {
+                vulnerabilitySubList.push('Cold');
+                amountOfRolls--;
+            }
+            else if (monsterList[i].includes('Water')) {
+                vulnerabilitySubList.push('Lightning');
+                amountOfRolls--;
+            }
+            else if (monsterList[i].includes('Earth')) {
+                vulnerabilitySubList.push('Fire');
+                amountOfRolls--;
+            }
+            else if (monsterList[i].includes('Air')) {
+                vulnerabilitySubList.push('Force');
+                amountOfRolls--;
+            }
+
+            while (vulnerabilitySubList.length < amountOfRolls) {
+                let vulnerabilityRoll = buildVulnerabilityList();
+                if (!vulnerabilitySubList.includes(vulnerabilityRoll) && !currentResistanceList.includes(vulnerabilityRoll)) {
+                    vulnerabilitySubList.push(vulnerabilityRoll);
+                }
+            }
+
+            if (vulnerabilitySubList.length === 0) {
+                vulnerabilityList.push('None');
+            }
+            else {
+                vulnerabilityList.push(vulnerabilitySubList)
+            }
+        }
+        return vulnerabilityList;
+    }
         
 }
 
@@ -477,7 +542,63 @@ function buildResistanceList() {
         return 'Magical'
     }
     else {
-        return 'All Physical'
+        return 'Physical'
+    }
+}
+
+function buildVulnerabilityList() {
+    const diceRoll = randomNumber(1, 100);
+
+    if (diceRoll >= 1 && diceRoll < 8) {
+        return 'Piercing'
+    }
+    else if (diceRoll >= 8 && diceRoll < 15) {
+        return 'Slashing'
+    }
+    else if (diceRoll >= 15 && diceRoll < 22) {
+        return 'Bludgeoning'
+    }
+    else if (diceRoll >= 23 && diceRoll < 29) {
+        return 'Cold'
+    }
+    else if (diceRoll >= 29 && diceRoll < 36) {
+        return 'Radiant'
+    }
+    else if (diceRoll >= 36 && diceRoll < 44) {
+        return 'Acid'
+    }
+    else if (diceRoll >= 44 && diceRoll < 51) {
+        return 'Poison'
+    }
+    else if (diceRoll >= 51 && diceRoll < 58) {
+        return 'Lightning'
+    }
+    else if (diceRoll >= 58 && diceRoll < 65) {
+        return 'Force'
+    }
+    else if (diceRoll >= 65 && diceRoll < 72) {
+        return 'Thunder'
+    }
+    else if (diceRoll >= 72 && diceRoll < 80) {
+        return 'Physic'
+    }
+    else if (diceRoll >= 80 && diceRoll < 86) {
+        return 'Fire'
+    }
+    else if (diceRoll >= 86 && diceRoll < 88) {
+        return 'Necrotic'
+    }
+    else if (diceRoll === 88) {
+        return 'Special'
+    }
+    else if (diceRoll === 89) {
+        return 'Magic/Magic weapons'
+    }
+    else if (diceRoll >= 90 && diceRoll < 100) {
+        return 'Silvered'
+    }
+    else {
+        return 'Physical'
     }
 }
 
@@ -558,6 +679,7 @@ function darkMode() {
 function createStoryFromClass(){
     const dungeonBtns = document.getElementsByClassName('dungeon__btn');
     const resistanceBtns = document.getElementsByClassName('resistance__btn');
+    const vulnerabilityBtns = document.getElementsByClassName('vulnerability__btn');
 
     for (let i = 0; i < dungeonBtns.length; i++) {
         dungeonBtns[i].addEventListener('click', () => {
@@ -598,6 +720,26 @@ function createStoryFromClass(){
             }
         });
     }
+
+    for (let i = 0; i < vulnerabilityBtns.length; i++) {
+        vulnerabilityBtns[i].addEventListener('click', () => {
+            if (vulnerabilityBtns[i].classList.contains('vulernability__selected')) {
+                for (let j = 0; j < vulnerabilityBtns.length; j++) {
+                    if (vulnerabilityBtns[j] != vulnerabilityBtns[i] && vulnerabilityBtns[j].classList.contains('option__selected')) {
+                        vulnerabilityBtns[i].classList.remove('vulnerability__selected');
+                    }
+                }
+            }
+            else {
+                vulnerabilityBtns[i].classList.add('vulnerability__selected');
+                for (let j = 0; j < vulnerabilityBtns.length; j++) {
+                    if (vulnerabilityBtns[j] != vulnerabilityBtns[i]) {
+                        vulnerabilityBtns[j].classList.remove('vulnerability__selected');
+                    }
+                }
+            }
+        });
+    }
 }
 
 function generateMonsterList() {
@@ -609,10 +751,12 @@ function generateMonsterList() {
     const dungeonSolutionContainer = document.getElementById('dungeonSolutionContainer');
     const testContainer = document.getElementById('testContainer');
     const monsterTypeContainer = document.getElementById('monsterTypesContainer');
+    const monsterVulnerabilityContainer = document.getElementById('monsterVulnerabilityContainer');
 
     generateBtn.addEventListener('click', () => {
         let selectedValue = getDungeonSelector()
         let resistanceValue = getUniqueSelector()
+        let vulnerabilityValue = getVulnerabilitySelector()
         let dungeonHistory = renderDungeonHistory()
         let thePartyGoal = randomNumber(1, 6);
         let theDungeonComplication = randomNumber(0, 3);
@@ -624,6 +768,7 @@ function generateMonsterList() {
         let myDungeonSolution = myStory.selectDungeonSolution(myDungeonComplication)
         let myMonsterAttacks = myStory.selectMonsterAttacks(myMonsterList);
         let myMonsterTypes = myStory.monsterResistances(myMonsterList, resistanceValue);
+        let myMonsterVulnerabilities = myStory.monsterVulnerabilities(myMonsterList, vulnerabilityValue, myMonsterTypes);
 
         clearOutput();
         monsterListContainer.innerHTML += `<h2 class="list__color monster__title">Monster List:</h2>`
@@ -658,6 +803,22 @@ function generateMonsterList() {
             }
         }
 
+        monsterVulnerabilityContainer.innerHTML += `<h2 class="list__color monster__title">Monster Vulnerabilities:</h2>`;
+        for (let i = 0; i < myMonsterVulnerabilities.length; i++) {
+            if ((i === 2 || i === 4) && i === myMonsterVulnerabilities.length - 1) {
+                monsterVulnerabilityContainer.innerHTML += `<div class="monster__wrapper odd__element"> 
+                                                    <p class="monster__name">${myMonsterList[i]}</p>
+                                                    <p>${myMonsterVulnerabilities[i]}</p>
+                                                    </div>`
+            }
+            else {
+                monsterVulnerabilityContainer.innerHTML += `<div class="monster__wrapper"> 
+                                                   <p class="monster__name">${myMonsterList[i]}</p>
+                                                   <p>${myMonsterVulnerabilities[i]}</p>
+                                                   </div>`
+            }
+        }
+
         dungeonHistoryContainer.innerHTML += `<h2 class="list__color">Dungeon History:</h2>`
         dungeonHistoryContainer.innerHTML += `<p>${myDungeonHistory}</p>`
 
@@ -676,6 +837,7 @@ function generateMonsterList() {
         addAnimation(dungeonComplicationContainer);
         addAnimation(dungeonSolutionContainer);
         addAnimation(monsterTypeContainer);
+        addAnimation(monsterVulnerabilityContainer);
     })
 }
 
@@ -703,11 +865,23 @@ function getUniqueSelector() {
     return selectedValue[0]
 }
 
+function getVulnerabilitySelector() {
+    const vulnerabilityBtns = document.getElementsByClassName('vulnerability__btns');
+
+    let selectedValue = ''
+    for (let i = 0; i < vulnerabilityBtns.length; i++) {
+        if (vulnerabilityBtns[i].classList.contains('vulnerability__selected')) {
+            vulnerabilityValue = vulnerabilityBtns[i].textContent.toLowerCase().split(' ')
+        }
+    }
+    return selectedValue[0]
+}
+
 function clearOutput() {
     const containerList = [document.getElementById('monsterListContainer'), 
     document.getElementById('dungeonHistoryContainer'), document.getElementById('partyGoalContainer'), 
     document.getElementById('dungeonComplicationContainer'), document.getElementById('dungeonSolutionContainer'), 
-    document.getElementById('monsterTypesContainer')];
+    document.getElementById('monsterTypesContainer'), document.getElementById('monsterVulnerabilityContainer')];
     
     for (let i = 0; i < containerList.length; i++) {
         containerList[i].textContent = '';
