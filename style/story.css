@@ -148,6 +148,26 @@
     animation: forwards fadeIn 0.5s linear;
 }
 
+.room__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.room__container > label {
+    font-size: 1.4em;
+    color: var(--light);
+    font-weight: 600;
+}
+
+#rooms {
+    background-color: var(--light);
+    color: var(--background);
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

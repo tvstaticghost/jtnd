@@ -496,6 +496,81 @@ class StoryCreation {
         
 }
 
+
+class RoomGeneration {
+
+    numberOfRolls = randomNumber(1, 8);
+
+    constructor(roomCount) {
+        this.roomCount = roomCount;
+    }
+
+    getLightLevel() {
+        let diceRoll = randomNumber(1, 6);
+        let lightLevel = '';
+
+        if (diceRoll >= 1 && diceRoll < 5) {
+            lightLevel = 'Average';
+        }
+        else if (diceRoll === 5) {
+            lightLevel = 'Dark';
+        }
+        else {
+            lightLevel = 'Bright';
+        }
+
+        return lightLevel;
+    }
+
+    decideRoomType() {
+
+        if (this.numberOfRolls === 1) {
+            this.emptyRoom();
+        }
+        else if (this.numberOfRolls >= 2 && this.numberOfRolls < 6) {
+            let secondRoll = randomNumber(1, 3);
+            if (secondRoll === 1) {
+                this.combatRoom();
+            }
+            else if (secondRoll === 2) {
+                this.explorationRoom();
+            }
+            else {
+                this.socialRoom();
+            }
+        }
+        else if (this.numberOfRolls >= 6 && this.numberOfRolls < 8) {
+            let possibilities = [this.combatRoom, this.explorationRoom, this.socialRoom];
+            for (let i = 0; i < 2; i++) {
+                let secondRoll = randomNumber(0, possibilities.length - 1);
+                possibilities[secondRoll]();
+                possibilities.splice(secondRoll, 1);
+            }
+        }
+        else if (this.numberOfRolls === 8) {
+            this.combatRoom();
+            this.explorationRoom();
+            this.socialRoom();
+        }
+    }
+
+    emptyRoom() {
+        console.log('empty room');
+    }
+
+    combatRoom() {
+        console.log('combat');
+    }
+
+    explorationRoom() {
+        console.log('exploration');
+    }
+
+    socialRoom() {
+        console.log('social');
+    }
+}
+
 function buildResistanceList() {
     const diceRoll = randomNumber(1, 100);
 
@@ -905,3 +980,7 @@ createStoryFromClass();
 darkMode();
 addSwordDecorations();
 addFrameHover();
+
+let test_call = new RoomGeneration(1);
+console.log(test_call.numberOfRolls);
+test_call.decideRoomType();
