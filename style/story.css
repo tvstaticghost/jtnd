@@ -61,7 +61,7 @@
     margin-top: 2rem;
 }
 
-#generateBtn {
+#generateBtn, #roomBtn {
     padding: 0.6rem 1rem;
     font-size: 1.05em;
     font-weight: 500;
@@ -72,8 +72,12 @@
     margin-top: 1rem;
 }
 
-#generateBtn:hover {
+#generateBtn:hover, #roomBtn:hover {
     cursor: pointer;
+}
+
+#roomBtn {
+    margin-bottom: 2rem;
 }
 
 .list__color {
@@ -154,7 +158,6 @@
     align-items: center;
     gap: 2rem;
     margin-top: 2rem;
-    margin-bottom: 2rem;
 }
 
 .room__container > label {
@@ -166,6 +169,19 @@
 #rooms {
     background-color: var(--light);
     color: var(--background);
+}
+
+.room__btn__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#roomOutput {
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes fadeIn {

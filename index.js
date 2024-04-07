@@ -677,13 +677,6 @@ function buildVulnerabilityList() {
     }
 }
 
-class RoomLayout {
-
-    constructor(roomRoll) {
-        this.roomRoll = roomRoll;
-    }
-}
-
 //returns a number between the min(inclusive) and the max(inclusive)
 function randomNumber(min, max) {
     max += 1
@@ -980,7 +973,3 @@ createStoryFromClass();
 darkMode();
 addSwordDecorations();
 addFrameHover();
-
-let test_call = new RoomGeneration(1);
-console.log(test_call.numberOfRolls);
-test_call.decideRoomType();
