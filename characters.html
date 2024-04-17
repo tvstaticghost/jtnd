@@ -33,11 +33,13 @@
         </div>
     </header>
     <main>
-        <h1 class="character__title">JTnD Character Creation</h1>
         <div class="character__wrapper">
-            <div class="name__wrapper">
-                <input type="text" id="characterName">
-                <label for="characterName">CHARACTER NAME</label>
+            <div class="title__wrapper">
+                <h1 class="character__title">JTnD Character Creation</h1>
+                <div class="name__wrapper">
+                    <input type="text" id="characterName">
+                    <label for="characterName" class="character__name">CHARACTER NAME</label>
+                </div>
             </div>
             <div class="character__attr">
                 <div class="attribute__wrapper">
@@ -66,5 +68,53 @@
                 </div>
             </div>
         </div>
+        <div class="main__form__area">
+            <div class="stat__container">
+                <div class="str__wrapper">
+                    <p class="stat__title">STRENGTH</p>
+                    <input type="text" id="strInput">
+                    <div class="stat__circle">
+                        <input type="number" id="strCircle">
+                    </div>
+                </div>
+                <div class="str__wrapper">
+                    <p class="stat__title">DEXTERITY</p>
+                    <input type="text" id="dexInput">
+                    <div class="stat__circle">
+                        <input type="number" id="dexCircle">
+                    </div>
+                </div>
+                <div class="str__wrapper">
+                    <p class="stat__title">CONSTITUTION</p>
+                    <input type="text" id="conInput">
+                    <div class="stat__circle">
+                        <input type="number" id="conCircle">
+                    </div>
+                </div>
+                <div class="str__wrapper">
+                    <p class="stat__title">INTELLIGENCE</p>
+                    <input type="text" id="intInput">
+                    <div class="stat__circle">
+                        <input type="number" id="intCircle">
+                    </div>
+                </div>
+                <div class="str__wrapper">
+                    <p class="stat__title">WISDOM</p>
+                    <input type="text" id="wisInput">
+                    <div class="stat__circle">
+                        <input type="number" id="wisCircle">
+                    </div>
+                </div>
+                <div class="str__wrapper">
+                    <p class="stat__title">CHARISMA</p>
+                    <input type="text" id="chaInput">
+                    <div class="stat__circle">
+                        <input type="number" id="chaCircle">
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+<script src="index.js"></script>
 </body>
+</html>

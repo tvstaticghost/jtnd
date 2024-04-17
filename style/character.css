@@ -4,10 +4,42 @@
 
 .character__wrapper {
     display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3rem;
 }
 
 .name__wrapper {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+#characterName {
+    padding: 10px;
+    width: 100%;
+    background-color: var(--green);
+    border: 2px solid var(--background);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    outline: 2px solid var(--green);
+    font-size: 1.2rem;
+}
+
+.character__name {
+    color: var(--green);
+    font-weight: 600;
     display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: block;
+    justify-self: flex-end;
+    margin-right: 10px;
+}
+
+.title__wrapper {
+    display: flex;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -27,6 +59,7 @@
     background-color: var(--green);
     padding: 3px;
     font-size: 1.2rem;
+    border: none;
     border-bottom: 2px solid black;
 }
 
@@ -35,4 +68,63 @@
     flex-direction: column;
     font-size: 0.8rem;
     font-weight: 700;
+}
+
+/* main form style */
+
+.main__form__area {
+    display: grid;
+    grid-template-columns: 15% 20% 20% 20%;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.stat__container {
+    background-color: var(--green);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+
+.str__wrapper {
+    background-color: var(--background);
+    width: 80%;
+}
+
+#strInput, #dexInput, #conInput, #intInput, #wisInput, #chaInput {
+    background-color: var(--background);
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--green);
+    border: 2px solid var(--background);
+    padding: 1.7rem 0;
+}
+
+.stat__title {
+    color: var(--green);
+    margin-top: 0.3rem;
+}
+
+#strCircle, #dexCircle, #conCircle, #intCircle, #wisCircle, #chaCircle {
+    width: 30%;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    color: var(--green);
+    background-color: var(--background);
+    position: relative;
+    top: 1.2rem;
+    text-align: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
