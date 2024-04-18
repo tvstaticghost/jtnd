@@ -1,3 +1,4 @@
+/*dungeon monster styles */
 .story__title {
     font-size: 4em;
     text-align: center;
@@ -83,14 +84,15 @@
 .list__color {
     color: var(--background);
     margin-bottom: 0.4rem;
+    font-family: var(--fancy);
 }
 
 #output {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 33% 33% 33%;
     justify-content: center;
     gap: 2rem;
-    max-width: 73%;
+    max-width: 70%;
     margin: 0 auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -99,7 +101,7 @@
 #monsterListContainer, #monsterTypesContainer, #monsterVulnerabilityContainer {
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 50% 50%;
     justify-content: center;
     gap: 2rem;
     max-width: 70%;
@@ -152,6 +154,8 @@
     animation: forwards fadeIn 0.5s linear;
 }
 
+/* room styles */
+
 .room__container {
     display: flex;
     justify-content: center;
@@ -179,9 +183,26 @@
 
 #roomOutput {
     color: var(--white);
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    max-width: 70%;
+    gap: 2rem;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.individual__room {
+    background-color: var(--light);
+    padding: 1rem;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
+}
+
+.room__text {
+    color: var(--background);
 }
 
 @keyframes fadeIn {
