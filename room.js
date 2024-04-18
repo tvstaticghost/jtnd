@@ -7,8 +7,54 @@ class RoomLayout {
     generateRooms() {
         const roomOutput = document.getElementById('roomOutput');
         clearRoomContainer(roomOutput);
+
         for (let i = 0; i < this.roomRoll; i++) {
-            roomOutput.innerHTML += '1'; 
+            const div = document.createElement('div');
+            const h2 = document.createElement('h2');
+            const p1 = document.createElement('p');
+
+            roomOutput.appendChild(div)
+            div.classList.add('individual__room');
+            div.appendChild(h2);
+
+            h2.classList.add('monster__title');
+            h2.classList.add('list__color');
+            h2.innerHTML = `Room ${i + 1}`;
+
+            div.appendChild(p1);
+            p1.classList.add('room__text');
+
+            let roomRoll = randomNumber(1, 8);
+
+            if (roomRoll === 1) {
+                p1.innerHTML = `Empty Room`
+            }
+            else if (roomRoll >= 2 && roomRoll < 6) {
+                let roomOptions = ['Combat', 'Exploration', 'Social']
+                let nextRoll = randomNumber(0, roomOptions.length - 1);
+
+                p1.innerHTML += `${roomOptions[nextRoll]} Room <br>`;
+            }
+            else if (roomRoll >= 6 && roomRoll < 8) {
+                const finalRoll = randomNumber(0, 2);
+                if(finalRoll === 0) {
+                    p1.innerHTML = `Combat Room <br>
+                                    Exploration Room`
+                }
+                else if (finalRoll === 1) {
+                    p1.innerHTML = `Combat Room <br>
+                                    Social Room`
+                }
+                else if (finalRoll === 2) {
+                    p1.innerHTML = `Exploration Room <br>
+                                    Social Room`
+                }
+            }
+            else {
+                p1.innerHTML = `Combat Room <br>`
+                p1.innerHTML += `Exploration Room <br>`
+                p1.innerHTML += `Social Room <br>`
+            }
         }
     }
 
@@ -31,11 +77,11 @@ class RoomLayout {
         const terrainOptions = ['Empty/open room', 'Terrain feature', 'Trap', 'Hazard', 'Lever, pulley, obvious object interaction', 'High platforms', 'Stairs'];
 
         const difficultyRoll = randomNumber(1, 20);
-        const groupRoll = randomNumber(0, 2);
+        const groupRoll = randomNumber(0, groupCompOptions.length - 1);
         const unitRoll = randomNumber(1, 6);
-        const awarenessRoll = randomNumber(0, 5);
-        const enemyRoll = randomNumber(0, 13);
-        const terrainRoll = randomNumber(0, 6);
+        const awarenessRoll = randomNumber(0, awarenessOptions.length - 1);
+        const enemyRoll = randomNumber(0, enemyGoalOptions.length - 1);
+        const terrainRoll = randomNumber(0, terrainOptions.length - 1);
 
         if (difficultyRoll >= 1 && difficultyRoll < 9) {
             combatRoomAttributes.difficulty = difficultyOptions[0];
@@ -94,9 +140,10 @@ class RoomLayout {
         const goalSubOptions = ['Knowledge or enemy weaknesses/strengths', 'Knowledge of traps or hazards', 'Knowledge of dungeon denizen\'s goals'];
 
         const creatureTypeRoll = randomNumber(1, 6);
-        const challengeRoll = randomNumber(0, 3);
-        const goalRoll = randomNumber(0, 3);
+        const challengeRoll = randomNumber(0, challengeOptions.length - 1);
+        const goalRoll = randomNumber(0, goalOptions.length - 1);
 
+        //sets the creatureType value
         if (creatureTypeRoll >= 1 && creatureTypeRoll < 4) {
             socialRoomAttributes.creatureType = creatureTypeOptions[0];
         }
@@ -119,6 +166,46 @@ class RoomLayout {
                 socialRoomAttributes.creatureType = creatureTypeOptions[5];
             }
         }
+
+        //Sets the challenge value 
+        if (challengeRoll === 1) {
+            socialRoomAttributes.challenge = challengeOptions[0];
+        }
+
+        else if (challengeRoll === 2) {
+            socialRoomAttributes.challenge = challengeOptions[1];
+        }
+
+        else if (challengeRoll === 3) {
+            socialRoomAttributes.challenge = challengeOptions[2];
+
+            let nextRoll = randomNumber(0, challengeSubOptions.length - 1);
+            socialRoomAttributes.challenge += challengeSubOptions[nextRoll];
+        }
+        else {
+            socialRoomAttributes.challenge = challengeOptions[3];
+
+            let nextRoll = randomNumber(0, specfiedSubOptions.length - 1);
+            socialRoomAttributes.challenge += specfiedSubOptions[nextRoll];
+        }
+
+        //Sets goal value
+        if (goalRoll === 1) {
+            socialRoomAttributes.goal = goalOptions[0];
+        }
+        else if (goalRoll === 2) {
+            socialRoomAttributes.goal = goalOptions[1];
+        }
+        else if (goalRoll === 3) {
+            socialRoomAttributes.goal = goalOptions[2];
+        }
+        else {
+            socialRoomAttributes.goal = goalOptions[3];
+
+            let secondRoll = randomNumber(0, goalSubOptions.length - 1);
+            socialRoomAttributes.goal += goalSubOptions[secondRoll];
+        }
+
         return socialRoomAttributes;
     }
 }
@@ -130,8 +217,6 @@ function renderRooms() {
     roomBtn.addEventListener('click', () => {
         const room = new RoomLayout(roomNumber.value);
         room.generateRooms();
-        console.log(room.combatRoom())
-        console.log()
     })
 }
 
