@@ -201,16 +201,27 @@
     align-items: center;
 }
 
+.room__title {
+    font-size: 2em;
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
 .room__text {
     color: var(--background);
+    align-self: flex-start;
 }
 
 .room__subtitle {
     color: var(--background);
-    text-align: center;
+    align-self: center;
     font-size: 1.2rem;
     margin-bottom: 10px;
     font-weight: 600;
+}
+
+.empty__room {
+    align-self: center;
 }
 
 @keyframes fadeIn {

@@ -9,10 +9,28 @@ class RoomLayout {
         clearRoomContainer(roomOutput);
 
         for (let i = 0; i < this.roomRoll; i++) {
+            const combatResults = this.combatRoom();
+            const socialResults = this.socialRoom();
+
+            const combatOutput = `<strong>Difficulty Rating</strong>: ${combatResults.difficulty} <br>
+                                <strong>Group Composition</strong>: ${combatResults.groupComp} <br>
+                                <strong>Unit Composition</strong>: ${combatResults.unitComp} <br>
+                                <strong>Awareness</strong>: ${combatResults.awareness} <br>
+                                <strong>Enemy Goal</strong>: ${combatResults.enemyGoal} <br>
+                                <strong>Terrain Features</strong>: ${combatResults.terrain}`;
+
+            const socialOutput = `<strong>Creature Type</strong>: ${socialResults.creatureType} <br>
+                                <strong>Challenge</strong>: ${socialResults.challenge} <br>
+                                <strong>Player Goal</strong>: ${socialResults.goal}`
+
             const div = document.createElement('div');
             const h2 = document.createElement('h2');
             const p1 = document.createElement('p');
             const p2 = document.createElement('p');
+            const p3 = document.createElement('p');
+            const p4 = document.createElement('p');
+            const p5 = document.createElement('p');
+            const p6 = document.createElement('p');
 
             roomOutput.appendChild(div)
             div.classList.add('individual__room');
@@ -20,17 +38,24 @@ class RoomLayout {
 
             h2.classList.add('monster__title');
             h2.classList.add('list__color');
+            h2.classList.add('room__title');
             h2.innerHTML = `Room ${i + 1}`;
 
             div.appendChild(p2);
             div.appendChild(p1);
 
             p1.classList.add('room__text');
-            p2.classList.add('room__subtitle')
+            p2.classList.add('room__subtitle');
+
+            p3.classList.add('room__subtitle');
+            p4.classList.add('room__text');
+            p5.classList.add('room__subtitle');
+            p6.classList.add('room__text');
 
             let roomRoll = randomNumber(1, 8);
 
             if (roomRoll === 1) {
+                p1.classList.add('empty__room');
                 p1.innerHTML = `Empty Room`
             }
             else if (roomRoll >= 2 && roomRoll < 6) {
@@ -38,23 +63,14 @@ class RoomLayout {
                 let nextRoll = randomNumber(0, roomOptions.length - 1);
 
                 if (roomOptions[nextRoll] === 'Combat') {
-                    let combatResults = this.combatRoom();
 
                     p2.innerHTML = '--Combat--'
-                    p1.innerHTML += `<strong>Difficulty Rating</strong>: ${combatResults.difficulty} <br>
-                                    <strong>Group Composition</strong>: ${combatResults.groupComp} <br>
-                                    <strong>Unit Composition</strong>: ${combatResults.unitComp} <br>
-                                    <strong>Awareness</strong>: ${combatResults.awareness} <br>
-                                    <strong>Enemy Goal</strong>: ${combatResults.enemyGoal} <br>
-                                    <strong>Terrain Features</strong>: ${combatResults.terrain}`;
+                    p1.innerHTML += combatOutput;
                 }
                 else if (roomOptions[nextRoll] === 'Social') {
-                    let socialResults = this.socialRoom();
 
                     p2.innerHTML = '--Social--';
-                    p1.innerHTML += `<strong>Creature Type</strong>: ${socialResults.creatureType} <br>
-                                    <strong>Challenge</strong>: ${socialResults.challenge} <br>
-                                    <strong>Player Goal</strong>: ${socialResults.goal}`;
+                    p1.innerHTML += socialOutput;
                 }
                 else {
                     p2.innerHTML = '--Exploration--';
@@ -63,22 +79,14 @@ class RoomLayout {
             }
             else if (roomRoll >= 6 && roomRoll < 8) {
                 const finalRoll = randomNumber(0, 2);
-                let p3 = document.createElement('p');
-                let p4 = document.createElement('p');
 
                 p3.classList.add('room__subtitle');
                 p4.classList.add('room__text');
 
                 if(finalRoll === 0) {
-                    let combatResults = this.combatRoom();
 
                     p2.innerHTML = '--Combat--'
-                    p1.innerHTML += `<strong>Difficulty Rating</strong>: ${combatResults.difficulty} <br>
-                                    <strong>Group Composition</strong>: ${combatResults.groupComp} <br>
-                                    <strong>Unit Composition</strong>: ${combatResults.unitComp} <br>
-                                    <strong>Awareness</strong>: ${combatResults.awareness} <br>
-                                    <strong>Enemy Goal</strong>: ${combatResults.enemyGoal} <br>
-                                    <strong>Terrain Features</strong>: ${combatResults.terrain}`;
+                    p1.innerHTML += combatOutput;
                     p1.innerHTML += `<br>`
                     div.appendChild(p3);
                     p3.innerHTML = '--Exploration--';
@@ -86,40 +94,34 @@ class RoomLayout {
                     p4.innerHTML = this.explorationRoom();
                 }
                 else if (finalRoll === 1) {
-                    let combatResults = this.combatRoom();
-                    let socialResults = this.socialRoom();
-
                     p2.innerHTML = '--Combat--'
-                    p1.innerHTML += `<strong>Difficulty Rating</strong>: ${combatResults.difficulty} <br>
-                                    <strong>Group Composition</strong>: ${combatResults.groupComp} <br>
-                                    <strong>Unit Composition</strong>: ${combatResults.unitComp} <br>
-                                    <strong>Awareness</strong>: ${combatResults.awareness} <br>
-                                    <strong>Enemy Goal</strong>: ${combatResults.enemyGoal} <br>
-                                    <strong>Terrain Features</strong>: ${combatResults.terrain}`;
+                    p1.innerHTML += combatOutput;
                     div.appendChild(p3);
                     p3.innerHTML = '--Social--';
                     div.appendChild(p4);
-                    p4.innerHTML = `<strong>Creature Type</strong>: ${socialResults.creatureType} <br>
-                                    <strong>Challenge</strong>: ${socialResults.challenge} <br>
-                                    <strong>Player Goal</strong>: ${socialResults.goal}`;     
+                    p4.innerHTML = socialOutput;     
                 }
                 else if (finalRoll === 2) {
-                    let socialResults = this.socialRoom();
 
                     p2.innerHTML = '--Exploration--';
                     p1.innerHTML = this.explorationRoom();
                     div.appendChild(p3);
                     p3.innerHTML = '--Social--'
                     div.appendChild(p4);
-                    p4.innerHTML = `<strong>Creature Type</strong>: ${socialResults.creatureType} <br>
-                                    <strong>Challenge</strong>: ${socialResults.challenge} <br>
-                                    <strong>Player Goal</strong>: ${socialResults.goal}`;
+                    p4.innerHTML = socialOutput;
                 }
             }
             else {
-                p1.innerHTML = `Combat Room <br>`
-                p1.innerHTML += `Exploration Room <br>`
-                p1.innerHTML += `Social Room <br>`
+                p2.innerHTML = '---Combat---';
+                p1.innerHTML = combatOutput;
+                div.appendChild(p3);
+                p3.innerHTML += `---Exploration---`;
+                div.appendChild(p4);
+                p4.innerHTML += this.explorationRoom();
+                div.appendChild(p5);
+                p5.innerHTML = `---Social---`;
+                div.appendChild(p6);
+                p6.innerHTML = socialOutput;
             }
         }
     }
