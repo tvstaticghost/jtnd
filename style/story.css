@@ -205,6 +205,14 @@
     color: var(--background);
 }
 
+.room__subtitle {
+    color: var(--background);
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
