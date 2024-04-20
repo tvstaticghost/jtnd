@@ -34,6 +34,42 @@ class RoomLayout {
 
             roomOutput.appendChild(div)
             div.classList.add('individual__room');
+
+            if (this.roomRoll === '1') {
+                div.classList.add('stretch__column__full');
+            }
+            else if (this.roomRoll === '2') {
+                if (i === 0) {
+                    div.classList.add('stretch__column__small__side');
+                }
+                else {
+                    div.classList.add('stretch__column__big__side');
+                }
+            }
+            else if (this.roomRoll === '4' && i === 3) {
+                console.log('da fuck')
+                div.classList.add('stretch__column__full');
+            }
+            else if (this.roomRoll === '5' && (i === 3 || i === 4)) {
+                if (i === 3) {
+                    div.classList.add('stretch__column__big__side');
+                }
+                else {
+                    div.classList.add('stretch__column__small__side');
+                }
+            }
+            else if (this.roomRoll === '7' && i === 6) {
+                div.classList.add('stretch__column__full');
+            }
+            else if (this.roomRoll === '8' && (i === 6 || i === 7)) {
+                if (i === 6) {
+                    div.classList.add('stretch__column__big__side');
+                }
+                else {
+                    div.classList.add('stretch__column__small__side');
+                }
+            }
+
             div.appendChild(h2);
 
             h2.classList.add('monster__title');
